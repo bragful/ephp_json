@@ -15,7 +15,7 @@ This library implements the JSON functions as is in PHP code for [ephp](https://
 
 ### <a name="Requirements">Requirements</a> ###
 
-ePHP JSON requires to be run over an Erlang/OTP +R16, but not all the versions are full compatible or recommended. See the list:
+ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions are full compatible or recommended. See the list:
 
 | Erlang Version | Support | Notes |
 |:---|:---:|:---|
@@ -35,10 +35,6 @@ ePHP JSON requires to be run over an Erlang/OTP +R16, but not all the versions a
 | 17.2 | :x: | no tests available in Travis-CI |
 | 17.1 | :heavy_check_mark: | |
 | 17.0 | :heavy_check_mark: | |
-| R16B03-1 | :heavy_check_mark: | Recommended if you use OTP R16 |
-| R16B03 | :heavy_check_mark: | |
-| R16B02 | :heavy_check_mark: | |
-| R16B01 | :x: | fails in math lib |
 
 
 ### <a name="Getting_Started">Getting Started</a> ###
@@ -53,14 +49,15 @@ And use the following code in your project:
 
 ```erlang
 {ok, Ctx} = ephp:context_new(),
-PHP = "Empty array output as array: <?=json_encode([])?>",
+ephp:register_module(Ctx, ephp_lib_json),
+PHP = "Empty array output as array: <?=json_encode('tada')?>",
 {ok, Text} = ephp:eval(Ctx, PHP).
 ```
 
 The result stored in `Text` should be:
 
 ```
-Empty array output as array: []
+Empty array output as array: "tada"
 ```
 
 Enjoy!
