@@ -45,12 +45,13 @@ A simple way to use, is include in your project <code>rebar.config</code> the fo
 And use the following code in your project:
 
 <pre lang="erlang">{ok, Ctx} = ephp:context_new(),
-PHP = "Empty array output as array: &lt;?=json_encode([])?>",
+ephp:register_module(Ctx, ephp_lib_json),
+PHP = "Empty array output as array: &lt;?=json_encode('tada')?>",
 {ok, Text} = ephp:eval(Ctx, PHP).</pre>
 
 The result stored in <code>Text</code> should be:
 
-<pre>Empty array output as array: []</pre>
+<pre>Empty array output as array: "tada"</pre>
 
 Enjoy!
 

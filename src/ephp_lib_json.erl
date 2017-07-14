@@ -13,7 +13,7 @@
 ]).
 
 -include_lib("ephp/include/ephp.hrl").
--include("php_json.hrl").
+-include("ephp_json.hrl").
 
 -spec init_func() -> ephp_func:php_function_results().
 
@@ -51,7 +51,7 @@ init_const() -> [
 -spec json_encode(context(), line(), [var_value()]) -> binary().
 
 json_encode(_Ctx, _Line, [{_, ToEncode}|_]) ->
-    jsone_encode(ToEncode).
+    jsone:encode(ToEncode).
 
 %-spec json_decode(context(), line(), [var_value()]) -> mixed().
 
