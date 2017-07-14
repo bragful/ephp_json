@@ -1,0 +1,12 @@
+{application, ephp_json, [
+    {description, "JSON library for ePHP"},
+    {vsn, git},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib,
+        ephp
+    ]},
+    {env, []}
+]}.
+
