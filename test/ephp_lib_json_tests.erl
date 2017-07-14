@@ -4,6 +4,9 @@
 
 
 tada_test() ->
+    Modules = application:get_env(ephp, modules, []),
+    application:set_env(ephp, modules, [ephp_lib_json|Modules]),
+
     {ok, Ctx} = ephp:context_new(),
     ephp:register_module(Ctx, ephp_lib_json),
     PHP = "Empty array output as array: <?=json_encode('tada')?>",
