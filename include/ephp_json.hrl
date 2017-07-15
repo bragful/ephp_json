@@ -1,13 +1,29 @@
 -define(JSON_ERROR_NONE, 0).
 -define(JSON_ERROR_DEPTH, 1).
 -define(JSON_ERROR_STATE_MISMATCH, 2).
-                                                                                                                 
+-define(JSON_ERROR_CTRL_CHAR, 3).
+-define(JSON_ERROR_SYNTAX, 4).
+-define(JSON_ERROR_UTF8, 5).
+-define(JSON_ERROR_RECURSION, 6).
+-define(JSON_ERROR_INF_OR_NAN, 7).
+-define(JSON_ERROR_UNSUPPORTED_TYPE, 8).
+% PHP 7:
+% -define(JSON_ERROR_INVALID_PROPERTY_NAME,).
+% -define(JSON_ERROR_UTF16,).
+
 -define(JSON_BIGINT_AS_STRING, 2).
 -define(JSON_OBJECT_AS_ARRAY, 1).
-                                                                                                                 
+
 -define(JSON_HEX_TAG, 1).
 -define(JSON_HEX_AMP, 2).
 -define(JSON_HEX_APOS, 4).
 -define(JSON_HEX_QUOT, 8).
 -define(JSON_FORCE_OBJECT, 16).
-
+-define(JSON_NUMERIC_CHECK, 32).
+-define(JSON_UNESCAPED_SLASHES, 64).
+-define(JSON_PRETTY_PRINT, 128).
+-define(JSON_UNESCAPED_UNICODE, 256).
+-define(JSON_PARTIAL_OUTPUT_ON_ERROR, 512).
+% PHP 7:
+% -define(JSON_PRESERVE_ZERO_FRACTION, ).
+% -define(JSON_UNESCAPED_LINE_TERMINATORS,).
