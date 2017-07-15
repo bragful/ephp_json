@@ -1,0 +1,20 @@
+Strings representing numbers automatically turned into numbers
+array(4) {
+  [0]=>
+  string(7) "+123123"
+  [1]=>
+  string(7) "-123123"
+  [2]=>
+  string(5) "1.2e3"
+  [3]=>
+  string(7) "0.00001"
+}
+string(29) "[123123,-123123,1200,1.0e-05]"
+Strings containing improperly formatted numbers
+array(2) {
+  [0]=>
+  string(13) "+a33123456789"
+  [1]=>
+  string(4) "a123"
+}
+string(24) "["+a33123456789","a123"]"

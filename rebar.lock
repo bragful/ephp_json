@@ -1,6 +1,6 @@
 [{<<"ephp">>,
   {git,"https://github.com/altenwald/ephp.git",
-       {ref,"1ff6a78d3a9d32e9f262eafdc72beb0770a6ea83"}},
+       {ref,"5b8ce4eb1dc3666eaaa1f6b1d5a4cbad20402079"}},
   0},
  {<<"ezic">>,
   {git,"https://github.com/waj/ezic.git",

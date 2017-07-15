@@ -15,6 +15,8 @@
 -include_lib("ephp/include/ephp.hrl").
 -include("ephp_json.hrl").
 
+-define(IS_FLAG(Flag, Flags), Flags band Flag > 0).
+
 -spec init_func() -> ephp_func:php_function_results().
 
 init_func() -> [
@@ -62,12 +64,15 @@ init_const() -> [
 -spec json_encode(context(), line(), [var_value()]) -> binary().
 
 json_encode(_Ctx, _Line, [{_, ToEncode}, {_, Flags}|_]) ->
-    Opts = flags_to_opts(Flags),
+    Opts = [{float_format, [
+        compact,
+        {scientific, 1}
+    ]}] ++ flags_to_opts(Flags),
     jsone:encode(filter_data(ToEncode, Flags), Opts).
 
 %-spec json_decode(context(), line(), [var_value()]) -> mixed().
 
-flag(Flags, {Flag, Option}) when Flags band Flag > 0 -> [Option];
+flag(Flags, {Flag, Option}) when ?IS_FLAG(Flags, Flag) -> [Option];
 flag(_, _) -> [].
 
 flags_to_opts(Flags) ->
@@ -92,6 +97,16 @@ filter_data(Array, Flags) when ?IS_ARRAY(Array) ->
     translate_hash(lists:map(fun({K, V}) ->
         {K, filter_data(V, Flags)}
     end, ephp_array:to_list(Array)), Flags);
+filter_data(Bin, Flags) when is_binary(Bin)
+                        andalso ?IS_FLAG(Flags, ?JSON_NUMERIC_CHECK) ->
+    case ephp_data:bin_to_number(Bin, false) of
+        undefined -> Bin;
+        Number ->
+            case float(trunc(Number)) of
+                Number -> trunc(Number);
+                _ -> Number
+            end
+    end;
 filter_data(Value, _Flags) ->
     Value.
 
@@ -101,11 +116,11 @@ filter_data(Value, _Flags) ->
 %@doc if all of the keys are numeric (integers) the data is translated as array
 %     else is returned as is.
 %@end
-translate_hash([], Flags) when Flags band ?JSON_FORCE_OBJECT > 0 ->
+translate_hash([], Flags) when ?IS_FLAG(Flags, ?JSON_FORCE_OBJECT) ->
     [{}];
 translate_hash(HoA, Flags) ->
     case lists:all(fun({K,_}) -> is_integer(K) end, HoA) of
-        true when Flags band ?JSON_FORCE_OBJECT > 0 ->
+        true when ?IS_FLAG(Flags, ?JSON_FORCE_OBJECT) ->
             [ {ephp_data:to_bin(K), V} || {K, V} <- HoA ];
         true ->
             [ V || {_,V} <- HoA ];
