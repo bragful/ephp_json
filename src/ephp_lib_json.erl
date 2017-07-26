@@ -57,7 +57,8 @@ init_const() -> [
     {<<"JSON_UNESCAPED_SLASHES">>, ?JSON_UNESCAPED_SLASHES},
     {<<"JSON_PRETTY_PRINT">>, ?JSON_PRETTY_PRINT},
     {<<"JSON_UNESCAPED_UNICODE">>, ?JSON_UNESCAPED_UNICODE},
-    {<<"JSON_PARTIAL_OUTPUT_ON_ERROR">>, ?JSON_PARTIAL_OUTPUT_ON_ERROR}
+    {<<"JSON_PARTIAL_OUTPUT_ON_ERROR">>, ?JSON_PARTIAL_OUTPUT_ON_ERROR},
+    {<<"JSON_PRESERVE_ZERO_FRACTION">>, ?JSON_PRESERVE_ZERO_FRACTION}
 ].
 
 
@@ -81,7 +82,9 @@ flags_to_opts(Flags) ->
         {?JSON_HEX_QUOT, hex_quote},
         {?JSON_HEX_APOS, hex_apos},
         {?JSON_HEX_AMP, hex_amp},
-        {?JSON_UNESCAPED_UNICODE, native_utf8}
+        {?JSON_UNESCAPED_UNICODE, native_utf8},
+        {?JSON_PRETTY_PRINT, {indent, 4}},
+        {?JSON_PRETTY_PRINT, {space, 1}}
     ],
     ParseFlag = fun(X) -> flag(Flags, X) end,
     lists:flatmap(ParseFlag, Checks).
@@ -95,8 +98,17 @@ flags_to_opts(Flags) ->
 %@end
 filter_data(Array, Flags) when ?IS_ARRAY(Array) ->
     translate_hash(lists:map(fun({K, V}) ->
-        {K, filter_data(V, Flags)}
+        {filter_data(K, Flags), filter_data(V, Flags)}
     end, ephp_array:to_list(Array)), Flags);
+filter_data(Num, Flags) when is_float(Num) ->
+    case float(trunc(Num)) of
+        Num when ?IS_FLAG(Flags, ?JSON_PRESERVE_ZERO_FRACTION) ->
+            {{json, <<(ephp_data:to_bin(trunc(Num)))/binary, ".0">>}};
+        Num ->
+            trunc(Num);
+        _ ->
+            Num
+    end;
 filter_data(Bin, Flags) when is_binary(Bin)
                         andalso ?IS_FLAG(Flags, ?JSON_NUMERIC_CHECK) ->
     case ephp_data:bin_to_number(Bin, false) of
@@ -119,11 +131,11 @@ filter_data(Value, _Flags) ->
 translate_hash([], Flags) when ?IS_FLAG(Flags, ?JSON_FORCE_OBJECT) ->
     [{}];
 translate_hash(HoA, Flags) ->
-    case lists:all(fun({K,_}) -> is_integer(K) end, HoA) of
-        true when ?IS_FLAG(Flags, ?JSON_FORCE_OBJECT) ->
+    case lists:foldl(fun({K, _}, K) -> K+1;
+                        ({_, _}, _) -> false
+                     end, 0, HoA) of
+        N when N =:= false orelse ?IS_FLAG(Flags, ?JSON_FORCE_OBJECT) ->
             [ {ephp_data:to_bin(K), V} || {K, V} <- HoA ];
-        true ->
-            [ V || {_,V} <- HoA ];
-        false ->
-            HoA
+        N when is_integer(N) ->
+            [ V || {_,V} <- HoA ]
     end.
