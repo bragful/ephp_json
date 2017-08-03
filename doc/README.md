@@ -6,11 +6,11 @@ Copyright (c) 2017 Altenwald Solutions, S.L.
 
 __Authors:__ "Manuel Rubio" ([`manuel@altenwald.com`](mailto:manuel@altenwald.com)).
 
-[![Build Status](https://img.shields.io/travis/altenwald/ephp_json/master.svg)](https://travis-ci.org/altenwald/ephp_json)
-[![Codecov](https://img.shields.io/codecov/c/github/altenwald/ephp_json.svg)](https://codecov.io/gh/altenwald/ephp_json)
-[![License: LGPL 2.1](https://img.shields.io/github/license/altenwald/ephp_json.svg)](https://raw.githubusercontent.com/altenwald/ephp_json/master/COPYING)
+[![Build Status](https://img.shields.io/travis/bragful/ephp_json/master.svg)](https://travis-ci.org/bragful/ephp_json)
+[![Codecov](https://img.shields.io/codecov/c/github/bragful/ephp_json.svg)](https://codecov.io/gh/bragful/ephp_json)
+[![License: LGPL 2.1](https://img.shields.io/github/license/bragful/ephp_json.svg)](https://raw.githubusercontent.com/bragful/ephp_json/master/COPYING)
 
-This library implements the JSON functions as is in PHP code for [ephp](https://github.com/altenwald/ephp) keeping in mind to have it as pure 100% Erlang.
+This library implements the JSON functions as is in PHP code for [ephp](https://github.com/bragful/ephp) keeping in mind to have it as pure 100% Erlang.
 
 
 ### <a name="Requirements">Requirements</a> ###
@@ -42,7 +42,7 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 A simple way to use, is include in your project `rebar.config` the following dependency line:
 
 ```erlang
-    {ephp, ".*", {git, "git://github.com/altenwald/ephp_json.git", master}}
+    {ephp, ".*", {git, "git://github.com/bragful/ephp_json.git", master}}
 ```
 
 And use the following code in your project:
@@ -67,5 +67,6 @@ Enjoy!
 
 
 <table width="100%" border="0" summary="list of modules">
+<tr><td><a href="ephp_json.md" class="module">ephp_json</a></td></tr>
 <tr><td><a href="ephp_lib_json.md" class="module">ephp_lib_json</a></td></tr></table>
 
