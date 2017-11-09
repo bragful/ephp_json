@@ -19,7 +19,8 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 
 | Erlang Version | Support | Notes |
 |:---|:---:|:---|
-| 20.0 | :heavy_check_mark: | Recommended if you use OTP 20 |
+| 20.1 | :heavy_check_mark: | Recommended if you use OTP 20 |
+| 20.0 | :heavy_check_mark: | |
 | 19.3 | :heavy_check_mark: | Recommended if you use OTP 19 |
 | 19.2 | :heavy_check_mark: | |
 | 19.1 | :heavy_check_mark: | |
@@ -32,7 +33,6 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 | 17.5 | :heavy_check_mark: | Recommended if you use OTP 17 |
 | 17.4 | :heavy_check_mark: | |
 | 17.3 | :x: | fail in SSL |
-| 17.2 | :x: | no tests available in Travis-CI |
 | 17.1 | :heavy_check_mark: | |
 | 17.0 | :heavy_check_mark: | |
 
@@ -42,7 +42,7 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 A simple way to use, is include in your project `rebar.config` the following dependency line:
 
 ```erlang
-    {ephp, ".*", {git, "git://github.com/bragful/ephp_json.git", master}}
+    {ephp_json, ".*", {git, "git://github.com/bragful/ephp_json.git", master}}
 ```
 
 And use the following code in your project:
