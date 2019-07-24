@@ -22,7 +22,7 @@ main([Filename|_] = RawArgs) ->
                 io:format("~s", [Result]),
                 ephp_context:destroy_all(Ctx),
                 quit(0);
-            {error, _Reason} ->
+            {error, _Reason, _Index, _File, _Level, _Data} ->
                 quit(1)
         end;
     {error, enoent} ->

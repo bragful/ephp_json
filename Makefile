@@ -14,13 +14,8 @@ compile:
 	./rebar3 compile
 
 test:
-	./rebar3 xref
-	./rebar3 eunit
-	./rebar3 cover
-	./covertool \
-		-cover _build/test/cover/eunit.coverdata \
-		-appname ephp_json \
-		-output cobertura.xml
+	./rebar3 do xref, eunit, cover, covertool generate
+	mv _build/test/covertool/ephp_json.covertool.xml cobertura.xml
 
 shell:
 	./rebar3 shell

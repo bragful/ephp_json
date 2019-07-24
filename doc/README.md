@@ -2,7 +2,7 @@
 
 # ePHP JSON #
 
-Copyright (c) 2017 Altenwald Solutions, S.L.
+Copyright (c) 2017-2019 Altenwald Solutions, S.L.
 
 __Authors:__ "Manuel Rubio" ([`manuel@altenwald.com`](mailto:manuel@altenwald.com)).
 
@@ -19,7 +19,14 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 
 | Erlang Version | Support | Notes |
 |:---|:---:|:---|
-| 20.1 | :heavy_check_mark: | Recommended if you use OTP 20 |
+| 22.0 | :heavy_check_mark: | Recommended if you use OTP 22 |
+| 21.3 | :heavy_check_mark: | Recommended if you use OTP 21 |
+| 21.2 | :heavy_check_mark: | |
+| 21.1 | :heavy_check_mark: | |
+| 21.0 | :heavy_check_mark: | |
+| 20.3 | :x: | fails in math lib |
+| 20.2 | :heavy_check_mark: | Recommended if you use OTP 20 |
+| 20.1 | :heavy_check_mark: | |
 | 20.0 | :heavy_check_mark: | |
 | 19.3 | :heavy_check_mark: | Recommended if you use OTP 19 |
 | 19.2 | :heavy_check_mark: | |
@@ -30,11 +37,6 @@ ePHP JSON requires to be run over an Erlang/OTP 17+, but not all the versions ar
 | 18.2 | :heavy_check_mark: | |
 | 18.1 | :heavy_check_mark: | |
 | 18.0 | :heavy_check_mark: | |
-| 17.5 | :heavy_check_mark: | Recommended if you use OTP 17 |
-| 17.4 | :heavy_check_mark: | |
-| 17.3 | :x: | fail in SSL |
-| 17.1 | :heavy_check_mark: | |
-| 17.0 | :heavy_check_mark: | |
 
 
 ### <a name="Getting_Started">Getting Started</a> ###
@@ -59,7 +61,6 @@ The result stored in `Text` should be:
 ```
 Empty array output as array: "tada"
 ```
-
 Enjoy!
 
 
