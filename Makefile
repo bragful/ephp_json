@@ -27,7 +27,7 @@ shell:
 
 ephp: compile
 	./rebar3 escriptize
-	cp -f _build/default/bin/ephp_json ephp
+	cp -f _build/default/bin/ephp ephp
 	-rm -f .build_date
 
 .PHONY: doc test compile all shell
