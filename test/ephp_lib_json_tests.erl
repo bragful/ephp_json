@@ -37,7 +37,7 @@ test_code(File) ->
         try
             run_test_code(File)
         catch Type:Reason ->
-            ?debugFmt("~n\t*** ERROR in ~s.php why: ~p; reason: ~p~n~p~n",
+            ?debugFmt("~n *** ERROR in ~s.php why: ~p~nreason:~n~p~n~p~n",
                 [File, Type, Reason, erlang:get_stacktrace()]),
             false
         end
@@ -79,6 +79,5 @@ run_test_code(File) ->
 code_to_test_() ->
     ephp:start(),
     {ok, Files} = file:list_dir(?CODE_PATH),
-    Codes = [ filename:rootname(File) || File <- Files,
-        filename:extension(File) =:= ".out" ],
-    lists:map(fun(X) -> test_code(X) end, Codes).
+    [ test_code(filename:rootname(File)) || File <- Files,
+        filename:extension(File) =:= ".out" ].

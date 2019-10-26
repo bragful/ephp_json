@@ -1,9 +1,9 @@
 {"1.1.0",
 [{<<"ephp">>,
   {git,"https://github.com/bragful/ephp.git",
-       {ref,"e1ec599cb839c84cdaca7279b03314489c20dc78"}},
+       {ref,"ef93563cd8be8ef390e0d5fd0ca30d320a79d86d"}},
   0},
- {<<"ezic">>,{pkg,<<"ezic">>,<<"0.2.0">>},1},
+ {<<"ezic">>,{pkg,<<"ezic">>,<<"0.2.1">>},1},
  {<<"jsone">>,
   {git,"https://github.com/altenwald/jsone.git",
        {ref,"b0dffe95d0588773c393ce1b698b9b3d1de55a58"}},
@@ -13,7 +13,7 @@
  {<<"zucchini">>,{pkg,<<"zucchini">>,<<"0.1.0">>},1}]}.
 [
 {pkg_hash,[
- {<<"ezic">>, <<"62C6076884580255A5BFE3CA9DCE3397EDD6B1786B49339D3F9AED2F9F7ED8CA">>},
+ {<<"ezic">>, <<"2BABBC0DA953AF1617807B7E1E9A5A4BAFC3F924A3BB4E0104C5D5C3B1F9D1F6">>},
  {<<"recon">>, <<"4444C879BE323B1B133EEC5241CB84BD3821EA194C740D75617E106BE4744318">>},
  {<<"unistring">>, <<"F1D07520C0A92BDF9A1D46F4A45BA424F27FA2D081F7C0ABA1F665C16A26B6C8">>},
  {<<"zucchini">>, <<"93F8508FDEF86395BB071BD582E4D844BB012F2AF3E986C4E49804E90E2B2B9F">>}]}

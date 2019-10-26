@@ -1,5 +1,5 @@
 @author "Manuel Rubio" <manuel@altenwald.com>
-@copyright 2017 Altenwald Solutions, S.L.
+@copyright 2017-2019 Altenwald Solutions, S.L.
 @title ePHP JSON
 
 @doc
@@ -53,4 +53,3 @@ The result stored in <code>Text</code> should be:
 <pre>Empty array output as array: "tada"</pre>
 
 Enjoy!
-
