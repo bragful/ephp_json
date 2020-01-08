@@ -2,7 +2,7 @@
 -author('manuel@altenwald.com').
 -compile([warnings_as_errors]).
 
--behaviour(ephp_func).
+-behaviour(ephp_lib).
 
 -export([
     init_func/0,
@@ -17,7 +17,7 @@
 
 -define(IS_FLAG(Flag, Flags), Flags band Flag > 0).
 
--spec init_func() -> ephp_func:php_function_results().
+-spec init_func() -> ephp_lib:php_function_results().
 
 init_func() -> [
     {json_encode, [pack_args, {args, [mixed, {integer, 0}, {integer, 512}]}]}
@@ -26,11 +26,11 @@ init_func() -> [
     %     {args, [string, {boolean, false}, {integer, 512}, {integer, 0}]}]}
 ].
 
--spec init_config() -> ephp_func:php_config_results().
+-spec init_config() -> ephp_lib:php_config_results().
 
 init_config() -> [].
 
--spec init_const() -> ephp_func:php_const_results().
+-spec init_const() -> ephp_lib:php_const_results().
 
 init_const() -> [
     {<<"JSON_ERROR_NONE">>, ?JSON_ERROR_NONE},
